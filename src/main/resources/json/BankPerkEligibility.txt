@@ -1,0 +1,25 @@
+@startuml
+title Bank Perk Eligibility flow - T-Mobile Money Customer Perks(V1.0)
+participant Bank
+participant APIGEE
+participant PCF
+participant IAM
+participant Samson
+autonumber
+
+Bank -> APIGEE: [[https://bitbucket.service.edp.t-mobile.com/projects/EITCODEDOC/repos/flow-documentation/browse/swagger/ce.cfs.tmomoney/BankPerkEligibility_V1.0.json bankPerkEligibility]]
+APIGEE -> APIGEE: Authenticate
+APIGEE -> APIGEE: Generate JWT Token 
+APIGEE -> PCF: [[https://bitbucket.service.edp.t-mobile.com/projects/EITCODEDOC/repos/flow-documentation/browse/swagger/ce.cfs.tmomoney/BankPerkEligibility_V1.0.json bankPerkEligibility]]
+PCF-> PCF: Validate JWT Token
+PCF-> PCF: Get JWT Token for IAM
+PCF-> IAM: UserInforV2.0
+IAM-> IAM: Validatation and Implementation
+IAM --> PCF: Response
+PCF-> PCF: Capture All lines from IAM response
+PCF-> Samson: Tuxedo Call
+Samson -> PCF: Response
+PCF -> PCF: Analyze Perk & OTP Eligibility for each line
+PCF--> APIGEE: Response
+APIGEE -> Bank:  Response
+@enduml

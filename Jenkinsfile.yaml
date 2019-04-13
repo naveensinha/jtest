@@ -1,0 +1,30 @@
+global:
+  jdkVersion: 1.8
+  cfActivateBlueGreen: false
+  cfApp: bankPerkEligibility
+
+buildWithMaven:
+  artifactDir: target
+  artifactApp: eligibility
+  artifactDelimiter: '-'
+  artifactType: jar
+  version: 1.1
+  pom: pom.xml
+  goals: clean package -U -P pcf
+  deployCF: true
+
+teamInfo:
+    teamEmail: chandrasekhar.bollapalli1@T-Mobile.com
+
+deploy:
+- env: QLAB02
+  loginURL: https://api.sys.px-npe01b.cf.t-mobile.com
+  domainURL: apps.px-npe01b.cf.t-mobile.com
+  space: QLAB02
+  org: CFS-TMoney
+  manifest: manifest.yml
+  approval: false
+  #newmanScriptDir: test/dev
+  bouncerActive: true
+  bouncerEnv: QLAB02
+  

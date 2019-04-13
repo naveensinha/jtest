@@ -1,0 +1,1343 @@
+{
+  "x-servers":"",
+  "swagger": "2.0",
+  "info": {
+    "title": "BillingAccountsSearch",
+    "description": "This service returns an account used for billing purposes.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Shay Soifer",
+      "email": "shay.soifer@amdocs.com"
+    },
+    "x-createdBy": {
+      "dateCreated": "Tus Oct 02 14:20:21 2018",
+      "createdBy": "SSOIFER",
+      "application": "Recite",
+      "appVersion": "0.3.6.2170", 
+      "status": "Conceptual - Initial",
+      "classification": "1.0 Customer Interaction Management", 
+      "profile": "Core Business Capability Service ",
+      "serviceLayer": "Enterprise - Billing"
+    }
+  },
+  "host": "dev01.api.t-mobile.com",
+  "basePath": "/billing/v2/billing-accounts",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/billing/v2/billing-accounts/search": {
+      "post": {
+        "tags": [
+          "BillingAccounts"
+        ],
+        "summary": "search billing account information based on criteria",
+        "description": "Lookup billing account information based on criteria using post",
+        "operationId": "billing-accounts-search",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "request",
+          "required": true,
+          "in": "body",
+          "description": "request",
+          "schema": {
+              "$ref": "#/definitions/BillingAccountLookupRequest"
+            }
+        },
+          {
+            "name": "classification-level",
+            "in": "query",
+            "description": "Indicates whether the Price Plan or the SOC is at  a Subscriber level or at a BAN level. Valid values:  ACCOUNT / SUBSCRIBER",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc",
+            "enum": [
+              "ACCOUNT",
+              "SUBSCRIBER"
+            ]
+          },
+          {
+            "name": "classification-type",
+            "in": "query",
+            "description": "The service type - price plan ,AddOn . Valid values: RATE_PLAN / ADD-ONS",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc",
+            "enum": [
+              "RATE_PLAN",
+              "ADD_ONS"
+            ]
+          },
+          {
+            "name": "mobile-number",
+            "in": "query",
+            "description": "The CTN Number",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "in": "query",
+            "name": "page-number",
+            "description": "The Page Number",
+            "required": false,
+            "type": "integer",
+                            "x-example" : 10          },
+          {
+            "in": "query",
+            "name": "page-size",
+            "description": "The Page Size",
+            "required": false,
+            "type": "integer",
+                            "x-example" : "abc"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+          },
+          {
+            "name": "Accept-Charset",
+            "in": "header",
+            "description": "Character sets that are acceptable.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+          },
+          {
+            "name": "Accept-Encoding",
+            "in": "header",
+            "description": "List of acceptable encodings. See HTTP compression.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "List of acceptable human languages for response",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "OAuth 2.0 access token with the authentication type set as Bearer.",
+            "required": true,
+            "type": "string",
+            "x-example" : "abc",
+            "format":"authorization format"
+
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "OAuth 2.0 access token with the authentication type set as Bearer.",
+            "required": false,
+            "type": "string"
+          },
+                    {
+            "name": "X-Auth-Originator",
+            "in": "header",
+            "description": "OAuth 2.0 access token with the authentication type set as Bearer.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "The Content-Length header specifies the actual length of the returned payload.",
+            "required": true,
+            "type": "string",
+                            "x-example" : "abc",
+                                        "format":"application/json"
+
+
+          },
+          {
+            "name": "Date",
+            "in": "header",
+            "description": "The date and time that the message was originated (in HTTP-date format as defined by RFC 7231 Date/Time Formats).",
+            "required": false,
+            "type": "string",
+            "format": "date-time",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "description": "The If-Modified-Since header specifies date-related conditions to be placed on the execution of a request.  The request will only be executed if the requested resource has not been modified since the date-time specified.  Because the behavior is complex, the details for usage are provided at http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html",
+            "required": false,
+            "type": "string",
+                                       "x-example": "1540183534000"
+
+          },
+          {
+            "name": "If-None-Match",
+            "in": "header",
+            "description": "The If-None-Match header specifies an ETag-related condition to be placed on the execution of a request.  The request will NOT be executed if the ETag of the requested resource matches one of those specified in the If-None-Match header.  Because the behavior is complex, the details for usage are provided at http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "activityid",
+            "in": "header",
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely. Sample: XyzA:D1s5s1i-X6AFRvfiPBfs-1234  Pass as is to downstream calls.",
+            "required": true,
+            "type": "string",
+                            "x-example" : "abc",
+                                        "format":"activity id format"
+
+
+          },
+          {
+            "name": "applicationid",
+            "in": "header",
+            "description": "Identifies the application, system, or tool that is being used to perform the transaction related to this request. Below are the sample values.ACUI, ESERVICE, REBELLION, WARP",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "applicationuserid",
+            "in": "header",
+            "description": "NT id of the one who is managing the transaction from CARE/RETAIL channels.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "authcustomerid",
+            "in": "header",
+            "description": "Customer id _ of the person that is interacting with the system.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "authlineofserviceid",
+            "in": "header",
+            "description": "Service Line that the customer intends to operate on, while interacting with the system.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "channelid",
+            "in": "header",
+            "description": "Identifies the business unit or sales channel for the Request.Below are the sample values:            Care            TeleSales            FullService            BusinessDirect            FinancePartners            NonFinancePartners            SelfServiceAuthenticated            SelfServiceAnonymous            InteractiveVoiceResponse",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "dealercode",
+            "in": "header",
+            "description": "Unique code to identify the dealer/rep user.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "interactionid",
+            "in": "header",
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "segmentationid",
+            "in": "header",
+            "description": "Identifier of customers primary data center.Sample: Polaris,Titan",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "senderid",
+            "in": "header",
+            "description": "Uniquely identifies an Operation consumer. Below are the sample values.ACUI, MYTMO, QVXP, REBELLION, WALMARTRETAIL, SAMSCLUBRETAIL.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "sessionid",
+            "in": "header",
+            "description": "A value populated by the sender used to track the transactions that occur during a session, a long-lasting interaction that ismaintained by the sender.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "storeid",
+            "in": "header",
+            "description": "Unique identifier for the retail store location.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "terminalid",
+            "in": "header",
+            "description": "Unique identifier for the retail store terminal. Needed for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id).",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "tillid",
+            "in": "header",
+            "description": "Unique identifier for the retail register. Needed for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id).",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+		     {
+            "name": "timestamp",
+            "in": "header",
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE can send current system timestamp.",
+            "required": false,
+            "type": "string",
+      "x-example" : "29-Apr-2015,07:00:14 PM"
+          },
+          {
+            "name": "workflowid",
+            "in": "header",
+            "description": "Workflow name (NEW/ADD/EXCHANGE/RETURN)/OrderTypes _ ACTIVATION ADDALINE CHANGEDEVICE_JUMP CHANGEDEVICE",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          }
+        ],
+        "responses": {
+          "207": {
+            "description": "The charges resource has been found.  Returning the ban charges.",
+            "headers": {
+              "Cache-Control": {
+                "description": "No cache indicators supported at this time. Samples: no-cache",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Content-Encoding": {
+                "description": "The type of encoding used on the data",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+                "Location": {
+                "description": "location",
+                "type": "string",
+                "x-example" : "abc"
+
+              },
+              "Content-Language": {
+                "description": "The natural language or languages of the intended audience for the enclosed content",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Date": {
+                "description": "The date and time that the message was originated (in HTTP-date format as defined by RFC 7231 Date/Time Formats).",
+                "type": "string",
+                "format": "date-time",
+                                "x-example" : "abc"
+
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Last-Modified": {
+                "description": "The Last-Modified entity-header field indicates the date and time at which the origin server believes the variant was last modified.",
+                "type": "string",
+                "format": "date-time",
+                                "x-example" : "abc"
+
+              },
+              "Transfer-Encoding": {
+                "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity.",
+                "type": "string",
+                "x-example" : "abc"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don_t receive/don_t send to downstream",
+                "type": "string",                                "x-example" : "abc"
+
+              }
+            },
+            "schema": {
+              "type": "array",
+              "description":"billing account object",
+              "items":{
+                "$ref": "#/definitions/BillingAccount"
+                
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "403": {
+            "description": "Client Access Denied",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "500": {
+            "description": "System Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/billing/v2/billing-accounts/{financialAccountNumber}/details": {
+        "get": {
+        "tags": [
+          "BillingAccountsUsingGet"
+        ],
+        "summary": "search billing account information based on criteria",
+        "description": "Lookup billing account information based on criteria",
+        "operationId": "getBillingAccountUsingGet",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "financialAccountNumber",
+            "in": "path",
+            "description": "The financial account number ",
+            "required": true,
+            "type": "string",
+            "x-example":"123456789"
+          },
+          {
+            "name": "classification-level",
+            "in": "query",
+            "description": "Indicates whether the Price Plan or the SOC is at  a Subscriber level or at a BAN level. Valid values:  ACCOUNT / SUBSCRIBER",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc",
+            "enum": [
+              "ACCOUNT",
+              "SUBSCRIBER"
+            ]
+          },
+          {
+            "name": "classification-type",
+            "in": "query",
+            "description": "The service type - price plan ,AddOn . Valid values: RATE_PLAN / ADD-ONS",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc",
+            "enum": [
+              "RATE_PLAN",
+              "ADD_ONS"
+            ]
+          },
+          {
+            "name": "mobile-number",
+            "in": "query",
+            "description": "The CTN Number",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "in": "query",
+            "name": "page-number",
+            "description": "The Page Number",
+            "required": false,
+            "type": "integer",
+                            "x-example" : 10          },
+          {
+            "in": "query",
+            "name": "page-size",
+            "description": "The Page Size",
+            "required": false,
+            "type": "integer",
+                            "x-example" : "abc"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+          },
+          {
+            "name": "Accept-Charset",
+            "in": "header",
+            "description": "Character sets that are acceptable.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+          },
+          {
+            "name": "Accept-Encoding",
+            "in": "header",
+            "description": "List of acceptable encodings. See HTTP compression.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "List of acceptable human languages for response",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "OAuth 2.0 access token with the authentication type set as Bearer.",
+            "required": true,
+            "type": "string",
+            "x-example" : "abc",
+            "format":"authorization format"
+
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "OAuth 2.0 access token with the authentication type set as Bearer.",
+            "required": false,
+            "type": "string"
+          },
+                    {
+            "name": "X-Auth-Originator",
+            "in": "header",
+            "description": "OAuth 2.0 access token with the authentication type set as Bearer.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "The Content-Length header specifies the actual length of the returned payload.",
+            "required": true,
+            "type": "string",
+                            "x-example" : "abc",
+                                        "format":"application/json"
+
+
+          },
+          {
+            "name": "Date",
+            "in": "header",
+            "description": "The date and time that the message was originated (in HTTP-date format as defined by RFC 7231 Date/Time Formats).",
+            "required": false,
+            "type": "string",
+            "format": "date-time",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "description": "The If-Modified-Since header specifies date-related conditions to be placed on the execution of a request.  The request will only be executed if the requested resource has not been modified since the date-time specified.  Because the behavior is complex, the details for usage are provided at http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html",
+            "required": false,
+            "type": "string",
+            "x-example" : "1539811047293"
+
+          },
+          {
+            "name": "If-None-Match",
+            "in": "header",
+            "description": "The If-None-Match header specifies an ETag-related condition to be placed on the execution of a request.  The request will NOT be executed if the ETag of the requested resource matches one of those specified in the If-None-Match header.  Because the behavior is complex, the details for usage are provided at http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "activityid",
+            "in": "header",
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely. Sample: XyzA:D1s5s1i-X6AFRvfiPBfs-1234  Pass as is to downstream calls.",
+            "required": true,
+            "type": "string",
+                            "x-example" : "abc",
+                                        "format":"activity id format"
+
+
+          },
+          {
+            "name": "applicationid",
+            "in": "header",
+            "description": "Identifies the application, system, or tool that is being used to perform the transaction related to this request. Below are the sample values.ACUI, ESERVICE, REBELLION, WARP",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "applicationuserid",
+            "in": "header",
+            "description": "NT id of the one who is managing the transaction from CARE/RETAIL channels.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "authcustomerid",
+            "in": "header",
+            "description": "Customer id _ of the person that is interacting with the system.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "authlineofserviceid",
+            "in": "header",
+            "description": "Service Line that the customer intends to operate on, while interacting with the system.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "channelid",
+            "in": "header",
+            "description": "Identifies the business unit or sales channel for the Request.Below are the sample values:            Care            TeleSales            FullService            BusinessDirect            FinancePartners            NonFinancePartners            SelfServiceAuthenticated            SelfServiceAnonymous            InteractiveVoiceResponse",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "dealercode",
+            "in": "header",
+            "description": "Unique code to identify the dealer/rep user.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "interactionid",
+            "in": "header",
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "segmentationid",
+            "in": "header",
+            "description": "Identifier of customers primary data center.Sample: Polaris,Titan",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "senderid",
+            "in": "header",
+            "description": "Uniquely identifies an Operation consumer. Below are the sample values.ACUI, MYTMO, QVXP, REBELLION, WALMARTRETAIL, SAMSCLUBRETAIL.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "sessionid",
+            "in": "header",
+            "description": "A value populated by the sender used to track the transactions that occur during a session, a long-lasting interaction that ismaintained by the sender.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "storeid",
+            "in": "header",
+            "description": "Unique identifier for the retail store location.",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "terminalid",
+            "in": "header",
+            "description": "Unique identifier for the retail store terminal. Needed for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id).",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "tillid",
+            "in": "header",
+            "description": "Unique identifier for the retail register. Needed for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id).",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE can send current system timestamp.",
+            "required": false,
+            "type": "string",
+      "x-example" : "29-Apr-2015,07:00:14 PM"
+
+          },
+          {
+            "name": "workflowid",
+            "in": "header",
+            "description": "Workflow name (NEW/ADD/EXCHANGE/RETURN)/OrderTypes _ ACTIVATION ADDALINE CHANGEDEVICE_JUMP CHANGEDEVICE",
+            "required": false,
+            "type": "string",
+                            "x-example" : "abc"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The charges resource has been found.  Returning the ban charges.",
+            "headers": {
+              "Cache-Control": {
+                "description": "No cache indicators supported at this time. Samples: no-cache",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Content-Encoding": {
+                "description": "The type of encoding used on the data",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+                "Location": {
+                "description": "location",
+                "type": "string",
+                "x-example" : "abc"
+
+              },
+              "Content-Language": {
+                "description": "The natural language or languages of the intended audience for the enclosed content",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Date": {
+                "description": "The date and time that the message was originated (in HTTP-date format as defined by RFC 7231 Date/Time Formats).",
+                "type": "string",
+                "format": "date-time",
+                                "x-example" : "abc"
+
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string",
+                                "x-example" : "abc"
+
+              },
+              "Last-Modified": {
+                "description": "The Last-Modified entity-header field indicates the date and time at which the origin server believes the variant was last modified.",
+                "type": "string",
+                "format": "date-time",
+                                "x-example" : "abc"
+
+              },
+              "Transfer-Encoding": {
+                "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity.",
+                "type": "string",
+                "x-example" : "abc"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don_t receive/don_t send to downstream",
+                "type": "string",                                "x-example" : "abc"
+
+              }
+            },
+            "schema": {
+              "type": "array",
+              "description":"billing account object",
+              "items":{
+                "$ref": "#/definitions/BillingAccount"
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified.  Will be returned in the response if Service Agreement and Ban Discount data is not modified since the timestamp mentioned in the request parameter",
+            "headers": {
+              "Last-Modified": {
+                "description": "The Last-Modified entity-header field indicates the date and time at which the origin server believes the variant was last modified.",
+                "type": "string",
+                "format": "date-time",
+                "x-example":"10-oct-18"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "403": {
+            "description": "Client Access Denied",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "500": {
+            "description": "System Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          }
+        },
+        "security": []
+      }
+      
+      
+      
+    }
+  },
+  "definitions": {
+    "BillingAccountLookupRequest": {
+      "type": "object",
+      "description": "only one of the following attributes is allowed in the request, sending more than one array will result in a 400 bad request.",
+      "properties": {
+        "financialAccountNumbersList": {
+          "type": "array",
+          "description": "array of financial account numbers.",
+          "items": {
+            "type": "string",
+            "description": "items",
+            "x-example": "123"
+          }
+        },
+        "hierarchyIds": {
+          "type": "array",
+          "description": "array of hierarchyId.",
+          "items": {
+            "type": "string",
+            "description": "items",
+            "x-example": "123"
+          }
+        }
+      }
+    },
+    "BillingAccount": {
+      "type": "object",
+      "description": "BillingAccount",
+      "properties": {
+        "_links": {
+          "type": "array",
+          "description": "includes HATEOAS mappings to things like organization and next-organization",
+          "items": {
+            "$ref": "#/definitions/IdRef"
+          }
+        },
+        "id": {
+          "type": "string",
+          "description": "id"
+        },
+        "accountType": {
+          "$ref": "#/definitions/AccountType"
+        },
+        "billInfo": {
+          "$ref": "#/definitions/billInfo"
+        },
+        "activationDate": {
+          "type": "string",
+          "description": "activationDate",
+          "format": "date-time"
+        },
+        "balance": {
+          "$ref": "#/definitions/AccountBalance"
+        },
+        "billStructure": {
+          "$ref": "#/definitions/BillStructure"
+        },
+        "billingMethod": {
+          "$ref": "#/definitions/BillingMethod"
+        },
+        "collectionStatus": {
+          "$ref": "#/definitions/CollectionStatus"
+        },
+        "collectionStatusDate": {
+          "type": "string",
+          "description": "collectionStatusDate",
+          "format": "date-time"
+        },
+        "creditClass": {
+          "$ref": "#/definitions/CreditClass"
+        },
+        "currentBillSequence": {
+          "type": "integer",
+          "description": "currentBillSequence",
+          "format": "int64"
+        },
+        "nextOrganization": {
+          "$ref": "#/definitions/Organization"
+        },
+        "organization": {
+          "$ref": "#/definitions/Organization"
+        },
+        "phone": {
+          "$ref": "#/definitions/Phone"
+        },
+        "status": {
+          "$ref": "#/definitions/BillingAccountStatus"
+        },
+        "lastActivity":{
+          "$ref": "#/definitions/LastActivity"
+
+        },
+        "tax": {
+          "type": "string",
+          "description": "tax"
+        },
+        "errorsList": {
+          "type":"array",
+          "items":{
+          "$ref": "#/definitions/Error"
+        }
+        }
+      }
+    },
+    "IdRef": {
+      "type": "object",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "enum": [
+            "self",
+            "parent",
+            "child",
+            "next",
+            "prev",
+            "first",
+            "last",
+            "item",
+            "collection",
+            "organization",
+            "subscriber",
+            "billing-account",
+            "next-organization",
+            "usage",
+            "bill-charges",
+            "service-agreement",
+            "bill-adjustments"
+          ],
+          "description":"rel"
+        },
+        "id": {
+          "type": "string",
+          "x-example": "213",
+          "description":"id"
+        },
+        "href": {
+          "type": "string",
+          "x-example": "href",
+                    "description":"href"
+
+        }
+      }
+    },
+    "AccountType": {
+      "type": "object",
+      "description": "AccountType",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "code",
+          "x-example": "valid values: code: B, E, G,I ,N ,R ,S "
+        },
+        "accountTypeDescription": {
+          "type": "string",
+          "description": "description",
+          "x-example": "abc"
+        },
+        "name": {
+          "type": "string",
+          "description": "name",
+          "x-example": "abc"
+        },
+        "subtype": {
+          "type": "string",
+          "description": "subtype",
+          "x-example": "abc"
+        },
+          "subTypeDescription": {
+          "type": "string",
+          "description": "description",
+          "x-example": "abc"
+        },
+        "hierarchyId": {
+          "type": "integer",
+          "description": "hierarchyId",
+          "format": "int64",
+          "x-example": 25
+        }
+      }
+    },
+    "AccountBalance": {
+      "type": "object",
+      "description": "AccountBalance",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "description": "amount",
+          "format": "double",
+          "x-example": 45.5
+        }
+      }
+    },
+    "BillStructure": {
+      "type": "object",
+      "description": "BillStructure",
+      "properties": {
+        "cycleSpecification": {
+          "$ref": "#/definitions/BillingCycleSpecificationRef"
+        }
+      }
+    },
+    "BillingCycleSpecificationRef": {
+      "type": "object",
+      "description": "BillingCycleSpecificationRef",
+      "properties": {
+        "cycle": {
+          "type": "string",
+          "description": "cycle",
+          "x-example": ""
+        },
+        "nextCycle": {
+          "type": "string",
+          "description": "nextCycle",
+          "x-example": ""
+        }
+      }
+    },
+    "BillingMethod": {
+      "type": "object",
+      "description": "BillingMethod",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "code",
+          "x-example": ""
+        },
+        "description": {
+          "type": "string",
+          "description": "description",
+          "x-example": ""
+        },
+        "name": {
+          "type": "string",
+          "description": "name",
+          "x-example": ""
+        }
+      }
+    },
+    "LastActivity":{
+      "type":"object",
+      "description":"last activity",
+      "properties":{
+      "statusCode":{
+        "type":"string"
+      },
+       "reasonCode": {
+          "type": "string",
+          "description": "the reason code",
+          "x-example": ""
+        },
+      "description":{
+        "type":"string",
+        "description":"based on the combination of status code and reason code"
+      }
+      }
+    },
+    "CollectionStatus": {
+      "type": "object",
+      "description": "CollectionStatus",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "code",
+          "x-example": ""
+        },
+        "description": {
+          "type": "string",
+          "description": "description",
+          "x-example": ""
+        },
+        "name": {
+          "type": "string",
+          "description": "name",
+          "x-example": ""
+        },
+         "involuntarySuspension": {
+          "type": "string",
+          "description": "indicates whether the ban is on suspend status because of collection, valid values: Y/N",
+          "x-example": "Y"
+        }
+      }
+    },
+    "CreditClass": {
+      "type": "object",
+      "description": "CreditClass",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "code",
+          "x-example": ""
+        },
+        "description": {
+          "type": "string",
+          "description": "description",
+          "x-example": ""
+        },
+        "name": {
+          "type": "string",
+          "description": "name",
+          "x-example": ""
+        }
+      }
+    },
+    "Organization": {
+      "type": "object",
+      "description": "Organization",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id",
+          "x-example": ""
+        },
+        "name": {
+          "type": "string",
+          "description": "name",
+          "x-example": ""
+        }
+      }
+    },
+    "Phone": {
+      "type": "object",
+      "description": "",
+      "properties": {
+        "contactExtention": {
+          "type": "string",
+          "description": "contactExtention",
+          "x-example": ""
+        },
+        "contactFax": {
+          "type": "string",
+          "description": "contactFax",
+          "x-example": ""
+        },
+        "contactPhone": {
+          "type": "string",
+          "description": "contactPhone",
+          "x-example": ""
+        },
+        "home": {
+          "type": "string",
+          "description": "home",
+          "x-example": ""
+        },
+        "other": {
+          "type": "string",
+          "description": "other",
+          "x-example": ""
+        },
+        "workExtension": {
+          "type": "string",
+          "description": "workExtension",
+          "x-example": "32321"
+        },
+        "workPhone": {
+          "type": "string",
+          "description": "workPhone",
+          "x-example": "24124"
+        }
+      }
+    },
+    "BillingAccountStatus": {
+      "type": "object",
+      "description": "BillingAccountStatus",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "code",
+          "x-example": ""
+        },
+        "accountStatusDescription": {
+          "type": "string",
+          "description": "description",
+          "x-example": ""
+        },
+        "name": {
+          "type": "string",
+          "description": "name",
+          "x-example": ""
+        }
+      }
+    },
+    "Error": {
+      "description": "Error object.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "A specific T-Mobile error code.",
+          "type": "string"
+        },
+        "userMessage": {
+          "description": "A human-readable message describing the error.",
+          "type": "string"
+        },
+        "systemMessage": {
+          "description": "Backend system error message.",
+          "type": "string"
+        }
+      }
+    },
+    "billInfo": {
+      "type": "object",
+      "properties": {
+        "billCycleStartDate": {
+          "type": "string",
+          "description": "The cycle start date of the last confirmd bill"
+        },
+        "billCycleEndDate": {
+          "type": "string",
+          "description": "The cycle end date of the last confirmd bill"
+        },
+        "autoPay": {
+          "type": "string",
+          "description": "An indicator to state if the financial account is registered to autopay. in case the indicator is 'R' the value set to 'opt-out', otherwise 'opt-in'"
+        }
+      }
+    },
+    "ErrorCollection": {
+      "description": "The array of error objects. As defined in https://tmobileusa.sharepoint.com/teams/EnterpriseServices/ESG%20Standards%20Documents/APIs/T-Mobile%20API%20Design%20Guidelines%20v1.0.docx",
+      "type": "object",
+      "properties": {
+        "errors": {
+
+            "$ref": "#/definitions/Error"
+          
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+
+  }
+}

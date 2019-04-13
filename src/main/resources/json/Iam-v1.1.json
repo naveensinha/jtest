@@ -1,0 +1,300 @@
+{
+	"searchRequest": {
+		"objectclass": "identityaccessmanagement",
+		"name": "UserId",
+		"value": "U-dc20c182-5e9e-4ac3-9515-d97eb2c6c817"
+	},
+
+
+
+	"Response": {
+		"nsmResponse": {
+			"status": "successful",
+			"responseCode": "200",
+			"errormessages": [{
+					"errorCode": "invalid_request",
+					"reason": "Required parameter user_id is missing."
+				},
+				{
+					"errorCode": "invalid_request",
+					"reason": "Required parameter 'owner_id' is missing."
+				}
+			]
+		},
+		"executionTime": "159.0",
+		"ObjectClass": "IdentityAccessManagement",
+		"msisdn": "4254459515",
+		"UserId": "U-dc20c182-5e9e-4ac3-9515-d97eb2c6c817",
+		"Email": "jamesalexanderlatham+2018-11-27@gmail.com",
+		"TMobileIdentity": {
+			"AccountDetails": {
+				"User": {
+					"FirstName": "TMOIDFirst",
+					"LastName": "TMOIDLast",
+					"AccountCreateDate": "02-13-2018 13:39:21",
+					"IAMLastEmailUpdate": "11-27-2018 18:37:47"
+				},
+				"Authentication": {
+					"SuccessCount": "1",
+					"LastSuccessfulDate": "01-30-2019 19:27:48",
+					"FailureCount": "0",
+					"LastfailedDate": "01-30-2019 19:27:48"
+				},
+				"Security": {
+					"SecurityAnswerCount": "3",
+					"SecurityAnswerUpdateDate": ""
+				},
+				"Passwords": {
+					"PasswordResetCount": "0",
+					"LastPasswordResetDate": "01-24-2019 19:26:51",
+					"LastPasswordUpdateDate": ""
+				},
+				"AccountStatus": {
+					"Status": "Active",
+					"AccountSoftLocked": false,
+					"AccountSoftLockedReason": "",
+					"AccountHardLocked": false,
+					"AccountHardLockedReason": "",
+					"AcccountAdminLocked": false,
+					"AcccountAdminLockedReason": "",
+					"mustChangePasswordFlag": false,
+					"mustChangePasswordReason": ""
+				},
+				"Access": {
+					"access_type": "Read-only"
+				},
+				"AvailableLists": {
+					"passwordreset": [""],
+					"unlock": [
+						"Care",
+						"Fraud"
+					],
+					"mustChangePasswordReason": [
+						"Care",
+						"Fraud"
+					]
+				}
+			}
+		},
+		"LinkedLines": {
+			"DefaultLine": {
+				"msisdn": "4254459515",
+				"BAN": "950608452",
+				"IMSI": "310260408277838",
+				"Operator": "1000",
+				"CustomerNumber": "313145845",
+				"AccountStatus": "Active",
+				"RegistrationStatus": "F",
+				"LockStatus": "ENABLED",
+				"LockedBy": "",
+				"LockReason": "CARE",
+				"DefaultLine": true,
+				"FirstName": "MOBFirst",
+				"LastName": "MOBLast",
+				"LineID": "Line1",
+				"AccountType": "SY",
+				"SubscriberType": "POSTPAID",
+				"GrantMasterPrivileges": "true",
+				"CustomerType": "PAH",
+				"Pincode": "",
+				"SOCList": "TRULY-UNLMTD,NACANMEX,B52ROAM,SPP-TETHER-4608MB,CTNBLK",
+				"ShortCodeBlacklist": "",
+				"ShortCodeBlacklistAll": "",
+				"MDSEnabled": true,
+				"IBAOptOut": true,
+				"MWIEnabled": true,
+				"VoWiFiEnabled": true,
+				"CommunicationPreference": "ES-OPT"
+			},
+			"Access": {
+				"access_type": "Read-only"
+			}
+		},
+		"BillingAccount": [{
+			"Ban": "950608452",
+			"BillCycleDay": "22",
+			"ZipCode": "98052",
+			"FirstName": "JAMES",
+			"LastName": "LATHAM",
+			"BirthDate": "",
+			"Lines": [{
+					"Line": 1,
+					"msisdn": "4254459515",
+					"IMSI": "310260408277838",
+					"ICCID": "8901260401782778381",
+					"FirstName": "MOBFirst",
+					"CustomerID": "313145845",
+					"SubscriberType": "POSTPAID",
+					"CustomerType": "PAH",
+					"AccountType": "SY",
+					"Status": "Active"
+				},
+				{
+					"Line": 2,
+					"msisdn": "2064898965",
+					"IMSI": "310260399180201",
+					"ICCID": "8901260393791802015",
+					"FirstName": "James",
+					"CustomerID": "322816473",
+					"SubscriberType": "POSTPAID",
+					"CustomerType": "NPAH_P",
+					"AccountType": "SY",
+					"Status": "Active"
+				}
+			],
+			"Access": {
+				"access_type": "Read-only"
+			}
+		}],
+		"Permissions": {
+			"ImplicitPermissions": [{
+					"msisdn": "4254459515",
+					"IMSI": "310260408277838",
+					"BAN": "950608452",
+					"IsLineGrantable": true,
+					"PermissionType": "inherited",
+					"IsPrimaryMSISDN": true,
+					"AccountStatus": "Active",
+					"CustomerType": "PAH"
+				},
+				{
+					"msisdn": "4254459515",
+					"IMSI": "310260408277838",
+					"BAN": "950608452",
+					"IsLineGrantable": false,
+					"PermissionType": "linked",
+					"IsPrimaryMSISDN": true,
+					"AccountStatus": "Active",
+					"CustomerType": "PAH"
+				},
+				{
+					"msisdn": "2064898965",
+					"IMSI": "310260399180201",
+					"BAN": "950608452",
+					"IsLineGrantable": true,
+					"PermissionType": "inherited",
+					"IsPrimaryMSISDN": true,
+					"AccountStatus": "Active",
+					"CustomerType": "NPAH_P"
+				}
+			],
+			"Access": {
+				"access_type": "Read-only"
+			},
+			"AvailableLists": {
+				"permissionset_services": [
+					"SMS",
+					"VOLTE"
+				]
+			}
+		},
+		"IAMUniverse": {
+			"AccountInformation": [{
+				"AccountDetails": {
+					"Language": "",
+					"FirstName": "",
+					"LastName": "",
+					"LastEmailUpdate": ""
+				},
+				"AccountStatus": {
+					"Status": "Init",
+					"AccountCreateDate": "",
+					"LockReason": "",
+					"LockTimestamp": ""
+				},
+				"PasswordsandSecurity": {
+					"LastPasswordUpdateDate": "",
+					"SecurityAnswerCount": "",
+					"SecurityAnswerUpdateDate": ""
+				}
+			}],
+			"Customers": [{
+				"CustomerDetails": {
+					"CustomerNumber": "C30000708",
+					"BusinessUnit": "TMO",
+					"Status": "Active",
+					"StatusDate": "",
+					"AccountCreationDate": "",
+					"FirstName": "MOBFirst",
+					"DateofBirth": "",
+					"Gender": "Unknown"
+				}
+			}],
+			"BillingAccountDetails": [{
+				"BillingAccountCode": "950608452",
+				"BusinessLine": "TMO",
+				"FraudLine": "",
+				"Status": "Active",
+				"StatusDate": "",
+				"BillCycleDay": "22",
+				"PaymentOptions": "POST",
+				"PrimaryLine": "",
+				"Street": "",
+				"City": "",
+				"County": "",
+				"State": "",
+				"Country": "",
+				"ZipCode": "",
+				"Customers": [{
+					"Customer": "C30000708",
+					"Roles": "AO"
+				}]
+			}],
+			"Access": {
+				"access_type": "Read-only"
+			}
+		},
+		"Privacy": {
+			"OfferDelivery": [{
+				"MailDelivery": false,
+				"SMSDelivery": false,
+				"EMailDelivery": false
+			}],
+			"ContactPreferences": [{
+				"EmailNewsLetter": true,
+				"AnnualEIPDisclosure": true
+			}],
+			"Offers": [{
+				"response": [{
+					"Offer": "Insights",
+					"Preferences": [{
+						"Prefname": "opt-out",
+						"Default": false
+					}]
+				}]
+			}],
+			"Consents": {
+				"response": [{
+					"Consent": "",
+					"Description": "",
+					"IssueTime": ""
+				}]
+			},
+			"AssociatedLineAccounts": {
+				"response": [{
+					"LineID": "Line1",
+					"msisdn": "4254459515",
+					"InterestBasedAds": true
+				}]
+			},
+			"AvailableLists": [{
+				"offer_preference": [{
+					"offerid": "Insights",
+					"offer_name": "Insights",
+					"preference": [{
+							"prefid": "29",
+							"prefname": "opt-in"
+						},
+						{
+							"prefid": "30",
+							"prefname": "opt-out"
+						}
+					]
+				}]
+			}],
+			"Access": {
+				"access_type": "Read-only"
+			}
+		}
+	}
+}

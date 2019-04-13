@@ -1,0 +1,749 @@
+{"swagger": "2.0",
+"definitions": {
+	"searchRequest": {
+		"type": "object",
+		"properties": {
+			"objectclass": {
+				"type": "string"
+			},
+			"name": {
+				"type": "string"
+			},
+			"value": {
+				"type": "string"
+			}
+		}
+	},
+	"Response": {
+		"type": "object",
+		"properties": {
+			"nsmResponse": {
+				"type": "object",
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"responseCode": {
+						"type": "string"
+					},
+					"errormessages": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"errorCode": {
+									"type": "string"
+								},
+								"reason": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"executionTime": {
+				"type": "string"
+			},
+			"ObjectClass": {
+				"type": "string"
+			},
+			"msisdn": {
+				"type": "string"
+			},
+			"UserId": {
+				"type": "string"
+			},
+			"Email": {
+				"type": "string"
+			},
+			"TMobileIdentity": {
+				"type": "object",
+				"properties": {
+					"AccountDetails": {
+						"type": "object",
+						"properties": {
+							"User": {
+								"type": "object",
+								"properties": {
+									"FirstName": {
+										"type": "string"
+									},
+									"LastName": {
+										"type": "string"
+									},
+									"AccountCreateDate": {
+										"type": "string"
+									},
+									"IAMLastEmailUpdate": {
+										"type": "string"
+									}
+								}
+							},
+							"Authentication": {
+								"type": "object",
+								"properties": {
+									"SuccessCount": {
+										"type": "string"
+									},
+									"LastSuccessfulDate": {
+										"type": "string"
+									},
+									"FailureCount": {
+										"type": "string"
+									},
+									"LastfailedDate": {
+										"type": "string"
+									}
+								}
+							},
+							"Security": {
+								"type": "object",
+								"properties": {
+									"SecurityAnswerCount": {
+										"type": "string"
+									},
+									"SecurityAnswerUpdateDate": {
+										"type": "string"
+									}
+								}
+							},
+							"Passwords": {
+								"type": "object",
+								"properties": {
+									"PasswordResetCount": {
+										"type": "string"
+									},
+									"LastPasswordResetDate": {
+										"type": "string"
+									},
+									"LastPasswordUpdateDate": {
+										"type": "string"
+									}
+								}
+							},
+							"AccountStatus": {
+								"type": "object",
+								"properties": {
+									"Status": {
+										"type": "string"
+									},
+									"AccountSoftLocked": {
+										"type": "boolean"
+									},
+									"AccountSoftLockedReason": {
+										"type": "string"
+									},
+									"AccountHardLocked": {
+										"type": "boolean"
+									},
+									"AccountHardLockedReason": {
+										"type": "string"
+									},
+									"AcccountAdminLocked": {
+										"type": "boolean"
+									},
+									"AcccountAdminLockedReason": {
+										"type": "string"
+									},
+									"mustChangePasswordFlag": {
+										"type": "boolean"
+									},
+									"mustChangePasswordReason": {
+										"type": "string"
+									}
+								}
+							},
+							"Access": {
+								"type": "object",
+								"properties": {
+									"access_type": {
+										"type": "string"
+									}
+								}
+							},
+							"AvailableLists": {
+								"type": "object",
+								"properties": {
+									"passwordreset": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									},
+									"unlock": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									},
+									"mustChangePasswordReason": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"LinkedLines": {
+				"type": "object",
+				"properties": {
+					"DefaultLine": {
+						"type": "object",
+						"properties": {
+							"msisdn": {
+								"type": "string"
+							},
+							"BAN": {
+								"type": "string"
+							},
+							"IMSI": {
+								"type": "string"
+							},
+							"Operator": {
+								"type": "string"
+							},
+							"CustomerNumber": {
+								"type": "string"
+							},
+							"AccountStatus": {
+								"type": "string"
+							},
+							"RegistrationStatus": {
+								"type": "string"
+							},
+							"LockStatus": {
+								"type": "string"
+							},
+							"LockedBy": {
+								"type": "string"
+							},
+							"LockReason": {
+								"type": "string"
+							},
+							"DefaultLine": {
+								"type": "boolean"
+							},
+							"FirstName": {
+								"type": "string"
+							},
+							"LastName": {
+								"type": "string"
+							},
+							"LineID": {
+								"type": "string"
+							},
+							"AccountType": {
+								"type": "string"
+							},
+							"SubscriberType": {
+								"type": "string"
+							},
+							"GrantMasterPrivileges": {
+								"type": "string"
+							},
+							"CustomerType": {
+								"type": "string"
+							},
+							"Pincode": {
+								"type": "string"
+							},
+							"SOCList": {
+								"type": "string"
+							},
+							"ShortCodeBlacklist": {
+								"type": "string"
+							},
+							"ShortCodeBlacklistAll": {
+								"type": "string"
+							},
+							"MDSEnabled": {
+								"type": "boolean"
+							},
+							"IBAOptOut": {
+								"type": "boolean"
+							},
+							"MWIEnabled": {
+								"type": "boolean"
+							},
+							"VoWiFiEnabled": {
+								"type": "boolean"
+							},
+							"CommunicationPreference": {
+								"type": "string"
+							}
+						}
+					},
+					"Access": {
+						"type": "object",
+						"properties": {
+							"access_type": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			},
+			"BillingAccount": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"Ban": {
+							"type": "string"
+						},
+						"BillCycleDay": {
+							"type": "string"
+						},
+						"ZipCode": {
+							"type": "string"
+						},
+						"FirstName": {
+							"type": "string"
+						},
+						"LastName": {
+							"type": "string"
+						},
+						"BirthDate": {
+							"type": "string"
+						},
+						"Lines": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"Line": {
+										"type": "number"
+									},
+									"msisdn": {
+										"type": "string"
+									},
+									"IMSI": {
+										"type": "string"
+									},
+									"ICCID": {
+										"type": "string"
+									},
+									"FirstName": {
+										"type": "string"
+									},
+									"CustomerID": {
+										"type": "string"
+									},
+									"SubscriberType": {
+										"type": "string"
+									},
+									"CustomerType": {
+										"type": "string"
+									},
+									"AccountType": {
+										"type": "string"
+									},
+									"Status": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"Access": {
+							"type": "object",
+							"properties": {
+								"access_type": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"Permissions": {
+				"type": "object",
+				"properties": {
+					"ImplicitPermissions": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"msisdn": {
+									"type": "string"
+								},
+								"IMSI": {
+									"type": "string"
+								},
+								"BAN": {
+									"type": "string"
+								},
+								"IsLineGrantable": {
+									"type": "boolean"
+								},
+								"PermissionType": {
+									"type": "string"
+								},
+								"IsPrimaryMSISDN": {
+									"type": "boolean"
+								},
+								"AccountStatus": {
+									"type": "string"
+								},
+								"CustomerType": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"Access": {
+						"type": "object",
+						"properties": {
+							"access_type": {
+								"type": "string"
+							}
+						}
+					},
+					"AvailableLists": {
+						"type": "object",
+						"properties": {
+							"permissionset_services": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"IAMUniverse": {
+				"type": "object",
+				"properties": {
+					"AccountInformation": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"AccountDetails": {
+									"type": "object",
+									"properties": {
+										"Language": {
+											"type": "string"
+										},
+										"FirstName": {
+											"type": "string"
+										},
+										"LastName": {
+											"type": "string"
+										},
+										"LastEmailUpdate": {
+											"type": "string"
+										}
+									}
+								},
+								"AccountStatus": {
+									"type": "object",
+									"properties": {
+										"Status": {
+											"type": "string"
+										},
+										"AccountCreateDate": {
+											"type": "string"
+										},
+										"LockReason": {
+											"type": "string"
+										},
+										"LockTimestamp": {
+											"type": "string"
+										}
+									}
+								},
+								"PasswordsandSecurity": {
+									"type": "object",
+									"properties": {
+										"LastPasswordUpdateDate": {
+											"type": "string"
+										},
+										"SecurityAnswerCount": {
+											"type": "string"
+										},
+										"SecurityAnswerUpdateDate": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					},
+					"Customers": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"CustomerDetails": {
+									"type": "object",
+									"properties": {
+										"CustomerNumber": {
+											"type": "string"
+										},
+										"BusinessUnit": {
+											"type": "string"
+										},
+										"Status": {
+											"type": "string"
+										},
+										"StatusDate": {
+											"type": "string"
+										},
+										"AccountCreationDate": {
+											"type": "string"
+										},
+										"FirstName": {
+											"type": "string"
+										},
+										"DateofBirth": {
+											"type": "string"
+										},
+										"Gender": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					},
+					"BillingAccountDetails": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"BillingAccountCode": {
+									"type": "string"
+								},
+								"BusinessLine": {
+									"type": "string"
+								},
+								"FraudLine": {
+									"type": "string"
+								},
+								"Status": {
+									"type": "string"
+								},
+								"StatusDate": {
+									"type": "string"
+								},
+								"BillCycleDay": {
+									"type": "string"
+								},
+								"PaymentOptions": {
+									"type": "string"
+								},
+								"PrimaryLine": {
+									"type": "string"
+								},
+								"Street": {
+									"type": "string"
+								},
+								"City": {
+									"type": "string"
+								},
+								"County": {
+									"type": "string"
+								},
+								"State": {
+									"type": "string"
+								},
+								"Country": {
+									"type": "string"
+								},
+								"ZipCode": {
+									"type": "string"
+								},
+								"Customers": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"Customer": {
+												"type": "string"
+											},
+											"Roles": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"Access": {
+						"type": "object",
+						"properties": {
+							"access_type": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			},
+			"Privacy": {
+				"type": "object",
+				"properties": {
+					"OfferDelivery": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"MailDelivery": {
+									"type": "boolean"
+								},
+								"SMSDelivery": {
+									"type": "boolean"
+								},
+								"EMailDelivery": {
+									"type": "boolean"
+								}
+							}
+						}
+					},
+					"ContactPreferences": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"EmailNewsLetter": {
+									"type": "boolean"
+								},
+								"AnnualEIPDisclosure": {
+									"type": "boolean"
+								}
+							}
+						}
+					},
+					"Offers": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"response": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"Offer": {
+												"type": "string"
+											},
+											"Preferences": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"Prefname": {
+															"type": "string"
+														},
+														"Default": {
+															"type": "boolean"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"Consents": {
+						"type": "object",
+						"properties": {
+							"response": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"Consent": {
+											"type": "string"
+										},
+										"Description": {
+											"type": "string"
+										},
+										"IssueTime": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					},
+					"AssociatedLineAccounts": {
+						"type": "object",
+						"properties": {
+							"response": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"LineID": {
+											"type": "string"
+										},
+										"msisdn": {
+											"type": "string"
+										},
+										"InterestBasedAds": {
+											"type": "boolean"
+										}
+									}
+								}
+							}
+						}
+					},
+					"AvailableLists": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"offer_preference": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"offerid": {
+												"type": "string"
+											},
+											"offer_name": {
+												"type": "string"
+											},
+											"preference": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"prefid": {
+															"type": "string"
+														},
+														"prefname": {
+															"type": "string"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"Access": {
+						"type": "object",
+						"properties": {
+							"access_type": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	}
+}

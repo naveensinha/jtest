@@ -1,0 +1,374 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "BankPerkEligibility",
+        "description": "This API will be used when the customer signs up for bank account to check their Perk Eligibility",
+        "version": "1.0.0",
+        "x-createdBy": {
+            "dateCreated": "Thu Feb  7 02:38:18 2019",
+            "createdBy": "cihan.topuz",
+            "application": "Recite",
+            "appVersion": "0.4.3.2801",
+            "documentId": "0f6d9b17-9664-4449-8f3d-789b36a5ba49",
+            "status": "Conceptual - Initial",
+            "classification": "21.0 Technology Infrastructure & Platform Management",
+            "profile": "Core Business Capability Service",
+            "serviceLayer": "Resource - Other"
+        }
+    },
+    "tags": [
+        {
+            "name": "ExecuteFunction",
+            "description": "The  design pattern as defined by T-Mobile Digital Architecture."
+        },
+        {
+            "name": "bankPerkEligibility",
+            "description": ""
+        }
+    ],
+    "basePath": "/customer/v1/tmoney",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/bankPerkEligibility": {
+            "post": {
+                "tags": [
+                    "bankPerkEligibility",
+                    "ExecuteFunction"
+                ],
+                "x-api-pattern": "ExecuteFunction",
+                "summary": "BankPerkEligibility to use T-mobile Money",
+                "operationId": "bankPerkEligibility",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "EligibilityRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EligibilityRequest"
+                        }
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Preferred content type _ default to application/json",
+                        "x-example": "application/json",
+                        "required": false,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 256,
+                        "pattern": "^[ \\S]+$"
+                    },
+                    {
+                        "name": "Access-Control-Request-Headers",
+                        "in": "header",
+                        "description": "For CORS pre-flight OPTIONS requests sent by a browser, headers to be used.",
+                        "x-example": "Authorization, Content-Type",
+                        "required": false,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 256,
+                        "pattern": "^[\\S ]*$"
+                    },
+                    {
+                        "name": "Access-Control-Request-Method",
+                        "in": "header",
+                        "description": "In CORS, the Access-Control-Request-Method header indicates which method will be used in the actual request as part of a preflight request.",
+                        "x-example": "POST",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "GET",
+                            "HEAD",
+                            "POST",
+                            "PUT",
+                            "DELETE",
+                            "CONNECT",
+                            "OPTIONS",
+                            "TRACE"
+                        ],
+                        "minLength": 1,
+                        "maxLength": 256,
+                        "pattern": "^[\\S]*$"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "The HTTP Authorization request header contains the credentials to authenticate a user agent with a server.",
+                        "x-example": "Bearer mF_9.B5f-4.1JqM",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 256,
+                        "pattern": "^[\\S ]+$"
+                    },
+                    {
+                        "name": "channel-id",
+                        "in": "header",
+                        "description": "Categorization of access or business stream",
+                        "x-example": "IVR",
+                        "required": false,
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 256,
+                        "pattern": "^[\\S]*$"
+                    },
+                    {
+                        "name": "timestamp",
+                        "in": "header",
+                        "description": "ms since 1/1/70 adjusted to GMT",
+                        "x-example": "1524599536",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64",
+                        "minimum": 0,
+                        "maximum": 999999999999,
+                        "pattern": "^[\\d]*$"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/EligibilityResponse"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "description": "For CORS pre-flight OPTIONS requests, used by the browser to block disallowed requests",
+                                "x-example": "Authorization, Content-Type",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 256,
+                                "pattern": "^[\\S ]+$"
+                            },
+                            "Content-Type": {
+                                "description": "The MIME type of this content",
+                                "x-example": "text/xml",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 256,
+                                "pattern": "^[ \\S]+$"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": "400",
+                                "userMessage": "Bad Request",
+                                "systemMessage": "Bad Request",
+                                "detailLink": "http://www.tmus.com"
+                            }
+                        },
+                        "headers": {}
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": "404",
+                                "userMessage": "Not Found",
+                                "systemMessage": "Not Found",
+                                "detailLink": "http://www.tmus.com"
+                            }
+                        },
+                        "headers": {}
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": "500",
+                                "userMessage": "Internal Server Error",
+                                "systemMessage": "Internal Server Error",
+                                "detailLink": "http://www.tmus.com"
+                            }
+                        },
+                        "headers": {}
+                    },
+                    "503": {
+                        "description": "Service unavailable",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "code": "503",
+                                "userMessage": "Service unavailable",
+                                "systemMessage": "Service unavailable",
+                                "detailLink": "http://www.tmus.com"
+                            }
+                        },
+                        "headers": {}
+                    }
+                },
+                "security": [
+                    {
+                        "Oauth": []
+                    },
+                    {
+                        "JWT": []
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "EligibilityRequest": {
+            "type": "object",
+            "required": [
+                "tmoid"
+            ],
+            "properties": {
+                "tmoid": {
+                    "description": "string is a predefined object from an igniteXml model - cabinet 1001760002 build 1001760247 key 1001760477",
+                    "type": "string"
+                },
+                "msisdn": {
+                    "description": "string is a predefined object from an igniteXml model - cabinet 1001760002 build 1001760247 key 1001760477",
+                    "type": "string"
+                }
+            }
+        },
+        "EligibilityResponse": {
+            "type": "object",
+            "required": [
+                "tmoid"
+            ],
+            "properties": {
+                "tmoid": {
+                    "description": "string is a predefined object from an igniteXml model - cabinet 1001760002 build 1001760247 key 1001760477",
+                    "type": "string"
+                },
+                "perkeligibility": {
+                    "description": "An array of perkeligibility objects.",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/Perkeligibility"
+                    }
+                }
+            }
+        },
+        "ErrorResponse": {
+            "type": "object",
+            "description": "As defined in http://api-standards.apps.px-npe01.cf.t-mobile.com/http/status-codes/error-response-format/",
+            "properties": {
+                "errors": {
+                    "description": "An array of errors objects.",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/ErrorResponseErrors"
+                    }
+                }
+            }
+        },
+        "ErrorResponseErrors": {
+            "type": "object",
+            "description": "As defined in http://api-standards.apps.px-npe01.cf.t-mobile.com/http/status-codes/error-response-format/",
+            "required": [
+                "code",
+                "userMessage"
+            ],
+            "properties": {
+                "code": {
+                    "description": "A succinct, domain-specific, human-readable text string to identify the type of error for the given status code",
+                    "example": "ProductNotFound",
+                    "type": "string",
+                    "pattern": "^[\\S ]+$"
+                },
+                "userMessage": {
+                    "description": "A human-readable message describing the error.",
+                    "example": "Failed to find product.",
+                    "type": "string",
+                    "pattern": "^[\\S ]+$"
+                },
+                "systemMessage": {
+                    "description": "Text that provides a more detailed technical explanation of the error",
+                    "example": "PRODUCT_NOT_FOUND",
+                    "type": "string"
+                },
+                "detailLink": {
+                    "description": "link to custom information providing greater detail on error or errors",
+                    "example": "http://aaa.bbb.ccc/",
+                    "type": "string"
+                }
+            }
+        },
+        "Perkeligibility": {
+            "type": "object",
+            "description": "An array of documents objects.",
+            "required": [
+                "eligibilityIndicator"
+            ],
+            "properties": {
+                "eligibilityIndicator": {
+                    "description": "string is a predefined object from an igniteXml model - cabinet 1001760002 build 1001760247 key 1001760477",
+                    "type": "boolean"
+                },
+                "msisdn": {
+                    "description": "string is a predefined object from an igniteXml model - cabinet 1001760002 build 1001760247 key 1001760477",
+                    "type": "string"
+                },
+                "lineActivationDate": {
+                    "description": "string is a predefined object from an igniteXml model - cabinet 1001760002 build 1001760247 key 1001760477",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "eligibilityReasonCode": {
+                    "description": "string is a predefined object from an igniteXml model - cabinet 1001760002 build 1001760247 key 1001760477",
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
+                },
+                "eligibilityReasonDescription": {
+                    "description": "string is a predefined object from an igniteXml model - cabinet 1001760002 build 1001760247 key 1001760477",
+                    "type": "string"
+                },
+                "otpEligibility": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Oauth": {
+            "type": "oauth2",
+            "tokenUrl": "https://dlab03.core.op.api.t-mobile.com:443/v2/oauth2/accesstoken?grant_type=client_credentials",
+            "flow": "application",
+            "scopes": {}
+        },
+        "JWT": {
+            "type": "apiKey",
+            "description": "JWT is a means of representing claims to be transfered between two parties.",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "security": [
+        {
+            "JWT": []
+        }
+    ]
+}

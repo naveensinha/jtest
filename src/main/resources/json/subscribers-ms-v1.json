@@ -1,0 +1,1261 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This document lists version 1.0 for the APIs that support subscriber.",
+    "version": "1.0",
+    "title": "Subscriber"
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "subscriber-rest",
+      "description": "Subscriber Rest"
+    }
+  ],
+  "paths": {
+    "/billing/v1/subscriber/getstatusactivity": {
+      "post": {
+        "tags": [
+          "subscriber-rest"
+        ],
+        "summary": "get status activity infromation",
+        "description": "return status activity information for given code and reasonCode",
+        "operationId": "getStatusActivity",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "getStatusActivityRequest",
+            "description": "getStatusActivityRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetStatusActivityRequest"
+            }
+          },
+          {
+            "name": "activityid",
+            "in": "header",
+            "description": "activityid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "applicationuserid",
+            "in": "header",
+            "description": "applicationuserid",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dealercode",
+            "in": "header",
+            "description": "dealercode",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request was successful",
+            "schema": {
+              "$ref": "#/definitions/GetStatusActivityResponse"
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "schema": {
+              "$ref": "#/definitions/GetStatusActivityResponse"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request",
+            "schema": {
+              "$ref": "#/definitions/GetStatusActivityResponse"
+            }
+          }
+        }
+      }
+    },
+    "/billing/v1/subscribers/-/get": {
+      "post": {
+        "tags": [
+          "subscriber-rest"
+        ],
+        "summary": "get subscriber by search criteria",
+        "description": "Return subscriber by search criteria",
+        "operationId": "get-subscriber",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "getSubscriberRequest",
+            "description": "getSubscriberRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetSubscriberRequest"
+            }
+          },
+          {
+            "name": "applicationuserid",
+            "in": "header",
+            "description": "applicationuserid",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "activityid",
+            "in": "header",
+            "description": "activityid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dealercode",
+            "in": "header",
+            "description": "dealercode",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request was successful",
+            "schema": {
+              "$ref": "#/definitions/Subscriber"
+            }
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request"
+          }
+        }
+      }
+    },
+    "/billing/v1/subscribers/search": {
+      "post": {
+        "tags": [
+          "subscriber-rest"
+        ],
+        "summary": "get subscribers by various parameteres",
+        "description": "Return subscriber list",
+        "operationId": "getSubscribers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "subscribers-search",
+            "description": "Search for subscribers by various parameteres",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SubscriberSearchRequest"
+            }
+          },
+          {
+            "name": "applicationuserid",
+            "in": "header",
+            "description": "applicationuserid",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "activityid",
+            "in": "header",
+            "description": "activityid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "authorization",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dealercode",
+            "in": "header",
+            "description": "dealercode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "includeProducts",
+            "description": "fetch subscriber products",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "pagenumber",
+            "description": "the page number to use while paginating on the subscribers sub-resource",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "pagesize",
+            "description": "the page size to use while paginating on the subscribers sub-resource",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request was successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BillingAccountResponse"
+              }
+            }
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request"
+          }
+        }
+      }
+    },
+    "/billing/v1/subscriber/getsubscribercount": {
+      "post": {
+        "tags": [
+          "subscriber-rest"
+        ],
+        "summary": "Get Subscriber count",
+        "description": "Get Subscriber count information under a billing account for validation ...",
+        "operationId": "getSubscriberCount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "getSubscriberCountRequest",
+            "description": "getSubscriberCountRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetSubscriberCountRequest"
+            }
+          },
+          {
+            "$ref": "#/parameters/header-activityid"
+          },
+          {
+            "$ref": "#/parameters/header-authorization"
+          },
+          {
+            "$ref": "#/parameters/header-dealercode"
+          },
+          {
+            "$ref": "#/parameters/header-applicationuserid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request was successful",
+            "schema": {
+              "$ref": "#/definitions/GetSubscriberCountResponse"
+            }
+          },
+          "404": {
+            "description": "Record not found"
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request"
+          }
+        }
+      }
+    },
+    "/billing/v1/subscribers/query": {
+      "post": {
+        "tags": [
+          "subscriber-rest"
+        ],
+        "summary": "Retrieve subscriber level attributes for a given BAN",
+        "description": "This API will return  subscriber level attributes for active, suspended and Reserved subscribers considering the total number of subscribers present in BAN and based on required SubscribersList or excluded SubscribersList indication.",
+        "operationId": "retrieveSubscribersInfo",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "SubscribersRequest",
+            "in": "body",
+            "description": "Describes the request structure to get subscriber level attributes. ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SubscribersRequest"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)",
+            "required": false,
+            "type": "string",
+            "x-example": "application/json"
+          },
+          {
+            "name": "Accept-Charset",
+            "in": "header",
+            "description": "Character sets that are acceptable.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Accept-Encoding",
+            "in": "header",
+            "description": "List of acceptable encodings. See HTTP compression.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "List of acceptable human languages for response",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/header-authorization"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "The Content-Length header specifies the actual length of the returned payload.",
+            "required": true,
+            "type": "string",
+            "x-example": "application/json"
+          },
+          {
+            "name": "Date",
+            "in": "header",
+            "description": "The date and time that the message was originated (in HTTP-date format as defined by RFC 7231 Date/Time Formats).",
+            "required": false,
+            "type": "string",
+            "format": "date-time",
+            "x-example": "2017-08-05T07:00:00.000Z"
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "description": "The If-Modified-Since header specifies date-related conditions to be placed on the execution of a request.  The request will only be executed if the requested resource has not been modified since the date-time specified.  Because the behavior is complex, the details for usage are provided at http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "If-None-Match",
+            "in": "header",
+            "description": "The If-None-Match header specifies an ETag-related condition to be placed on the execution of a request.  The request will NOT be executed if the ETag of the requested resource matches one of those specified in the If-None-Match header.  Because the behavior is complex, the details for usage are provided at http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/header-activityid"
+          },
+          {
+            "$ref": "#/parameters/header-applicationId"
+          },
+          {
+            "$ref": "#/parameters/header-applicationuserid"
+          },
+          {
+            "$ref": "#/parameters/header-authCustomerId"
+          },
+          {
+            "$ref": "#/parameters/header-authFinancialAccountId"
+          },
+          {
+            "$ref": "#/parameters/header-authLineOfServiceId"
+          },
+          {
+            "$ref": "#/parameters/header-channelId"
+          },
+          {
+            "$ref": "#/parameters/header-dealercode"
+          },
+          {
+            "name": "interactionid",
+            "in": "header",
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer.",
+            "required": false,
+            "type": "string",
+            "x-example": "A545345"
+          },
+          {
+            "name": "segmentationid",
+            "in": "header",
+            "description": "Identifier of customers primary data center.Sample: Polaris,Titan",
+            "required": false,
+            "type": "string",
+            "x-example": "Polaris"
+          },
+          {
+            "name": "senderid",
+            "in": "header",
+            "description": "Uniquely identifies an Operation consumer. Below are the sample values.ACUI, MYTMO, QVXP, REBELLION, WALMARTRETAIL, SAMSCLUBRETAIL.",
+            "required": false,
+            "type": "string",
+            "x-example": "MYTMO"
+          },
+          {
+            "name": "sessionid",
+            "in": "header",
+            "description": "A value populated by the sender used to track the transactions that occur during a session, a long-lasting interaction that ismaintained by the sender.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "storeid",
+            "in": "header",
+            "description": "Unique identifier for the retail store location.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "terminalid",
+            "in": "header",
+            "description": "Unique identifier for the retail store terminal. Needed for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id).",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tillid",
+            "in": "header",
+            "description": "Unique identifier for the retail register. Needed for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id).",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/header-timestamp"
+          },
+          {
+            "name": "workflowid",
+            "in": "header",
+            "description": "Workflow name (NEW/ADD/EXCHANGE/RETURN)/OrderTypes _ ACTIVATION ADDALINE CHANGEDEVICE_JUMP CHANGEDEVICE",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subscriber level attributes for active, suspended and Reserved subscribers has been found.  Returning the subscriber level attributes.",
+            "schema": {
+              "$ref": "#/definitions/SubscribersResponse"
+            },
+            "headers": {
+              "Cache-Control": {
+                "description": "No cache indicators supported at this time. Samples: no-cache",
+                "type": "string"
+              },
+              "Content-Encoding": {
+                "description": "The type of encoding used on the data",
+                "type": "string"
+              },
+              "Content-Language": {
+                "description": "The natural language or languages of the intended audience for the enclosed content",
+                "type": "string"
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "Date": {
+                "description": "The date and time that the message was originated (in HTTP-date format as defined by RFC 7231 Date/Time Formats).",
+                "type": "string",
+                "format": "date-time"
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string"
+              },
+              "Last-Modified": {
+                "description": "The Last-Modified entity-header field indicates the date and time at which the origin server believes the variant was last modified.",
+                "type": "string",
+                "format": "date-time"
+              },
+              "Transfer-Encoding": {
+                "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity.",
+                "type": "string"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don_t receive/don_t send to downstream",
+                "type": "string"
+              }
+            }
+          },
+          "207": {
+            "description": "Combination of success and failure response",
+            "schema": {
+              "$ref": "#/definitions/SubscribersResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "404": {
+            "description": "No details found for billing acoount Id",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "500": {
+            "description": "System Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "schema": {
+              "$ref": "#/definitions/ErrorCollection"
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "header-activityid": {
+      "in": "header",
+      "name": "activityid",
+      "description": "activity id",
+      "required": true,
+      "type": "string"
+    },
+    "header-authorization": {
+      "in": "header",
+      "name": "authorization",
+      "description": "authorization header",
+      "required": false,
+      "type": "string"
+    },
+    "header-dealercode": {
+      "in": "header",
+      "name": "dealercode",
+      "description": "dealer code",
+      "required": false,
+      "type": "string"
+    },
+    "header-applicationuserid": {
+      "in": "header",
+      "name": "applicationuserid",
+      "description": "application user id",
+      "required": false,
+      "type": "string"
+    },
+    "header-applicationId": {
+      "in": "header",
+      "name": "applicationId",
+      "description": "application id",
+      "required": false,
+      "type": "string"
+    },
+    "header-authCustomerId": {
+      "in": "header",
+      "name": "authCustomerId",
+      "description": "authCustomer id",
+      "required": false,
+      "type": "string"
+    },
+    "header-authFinancialAccountId": {
+      "in": "header",
+      "name": "authFinancialAccountId",
+      "description": "auth financial account id",
+      "required": false,
+      "type": "string"
+    },
+    "header-authLineOfServiceId": {
+      "in": "header",
+      "name": "authLineOfServiceId",
+      "description": "auth line of service id",
+      "required": false,
+      "type": "string"
+    },
+    "header-channelId": {
+      "in": "header",
+      "name": "channelId",
+      "description": "channel id",
+      "required": false,
+      "type": "string"
+    },
+    "header-interactionId": {
+      "in": "header",
+      "name": "interactionId",
+      "description": "interaction id",
+      "required": false,
+      "type": "string"
+    },
+    "header-masterDealerCode": {
+      "in": "header",
+      "name": "masterDealerCode",
+      "description": "master dealer code",
+      "required": false,
+      "type": "string"
+    },
+    "header-segmentationId": {
+      "in": "header",
+      "name": "segmentationId",
+      "description": "segmentation id",
+      "required": false,
+      "type": "string"
+    },
+    "header-senderId": {
+      "in": "header",
+      "name": "senderId",
+      "description": "sender id",
+      "required": false,
+      "type": "string"
+    },
+    "header-sessionId": {
+      "in": "header",
+      "name": "sessionId",
+      "description": "session id",
+      "required": false,
+      "type": "string"
+    },
+    "header-terminalId": {
+      "in": "header",
+      "name": "terminalId",
+      "description": "terminal id",
+      "required": false,
+      "type": "string"
+    },
+    "header-storeId": {
+      "in": "header",
+      "name": "storeId",
+      "description": "store id",
+      "required": false,
+      "type": "string"
+    },
+    "header-tillId": {
+      "in": "header",
+      "name": "tillId",
+      "description": "till id",
+      "required": false,
+      "type": "string"
+    },
+    "header-workflowId": {
+      "in": "header",
+      "name": "workflowId",
+      "description": "workflow id",
+      "required": false,
+      "type": "string"
+    },
+    "header-timestamp": {
+      "in": "header",
+      "name": "timestamp",
+      "description": "timestamp",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "definitions": {
+    "GetStatusActivityRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "SubscriberSearchRequest": {
+      "type": "object",
+      "description": "only one of the following attributes is allowed in the request, sending more than one array will result in a 400 bad request.",
+      "properties": {
+        "msisdns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "billingAccountIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "imeis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "uuids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "billingAccountIdAndMsisdnCombinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "billingAccountId": {
+                "type": "string"
+              },
+              "msisdn": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "GetSubscriberRequest": {
+      "description": "billingAccountId is optional",
+      "type": "object",
+      "properties": {
+        "msisdn": {
+          "type": "string"
+        },
+        "billingAccountId": {
+          "type": "string"
+        }
+      }
+    },
+    "GetSubscriberCountRequest": {
+      "description": "Billing Account Id and Product Type are mandatory",
+      "type": "object",
+      "properties": {
+        "billingAccountId": {
+          "type": "string"
+        },
+        "productType": {
+          "type": "string"
+        },
+        "logicalDate": {
+          "type": "string",
+          "description": "logical date should be in YYYYMMDD string format"
+        }
+      }
+    },
+    "GetStatusActivityResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "reasonCode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "reasonName": {
+          "type": "string"
+        }
+      }
+    },
+    "BillingAccountResponse": {
+      "type": "object",
+      "properties": {
+        "billingAccountId": {
+          "type": "string"
+        },
+        "subscribers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Subscriber"
+          }
+        }
+      }
+    },
+    "StatusActivityCode": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "reasonCode": {
+          "type": "string"
+        },
+        "reasonName": {
+          "type": "string"
+        }
+      }
+    },
+    "StoreInfo": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "SubscriberProductType": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "RequestByBillingAccountAndMSISDN": {
+      "type": "object",
+      "properties": {
+        "billingAccountId": {
+          "type": "string"
+        },
+        "msisdn": {
+          "type": "string"
+        }
+      }
+    },
+    "Subscriber": {
+      "type": "object",
+      "properties": {
+        "_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IdRef"
+          }
+        },
+        "activatingDealer": {
+          "$ref": "#/definitions/DealerProfile"
+        },
+        "activatingStoreInfo": {
+          "$ref": "#/definitions/StoreInfo"
+        },
+        "activationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "billingAccountId": {
+          "type": "string"
+        },
+        "contact": {
+          "$ref": "#/definitions/ContactInfo"
+        },
+        "lastActivityCode": {
+          "$ref": "#/definitions/StatusActivityCode"
+        },
+        "marketType": {
+          "$ref": "#/definitions/MarketType"
+        },
+        "msisdn": {
+          "type": "string"
+        },
+        "paperworkDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "productType": {
+          "$ref": "#/definitions/SubscriberProductType"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductRef"
+          }
+        },
+        "resource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Resource"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/SubscriberStatus"
+        },
+        "statusDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "uuid": {
+          "type": "string"
+        }
+      }
+    },
+    "ContactInfo": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "middleInitial": {
+          "type": "string"
+        },
+        "nameId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "suffix": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "SubscriberStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "MarketType": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "DealerProfile": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "salesChannel": {
+          "type": "string"
+        }
+      }
+    },
+    "Resource": {
+      "type": "object",
+      "properties": {
+        "endDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "type": {
+          "$ref": "#/definitions/ResourceType"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ResourceType": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "ClientErrorInformation": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "userMessage": {
+          "type": "string"
+        },
+        "systemMessage": {
+          "type": "string"
+        },
+        "requestURI": {
+          "type": "string"
+        },
+        "traceId": {
+          "type": "string"
+        }
+      }
+    },
+    "GetSubscriberCountResponse": {
+      "type": "object",
+      "properties": {
+        "subscribersCountInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SubscribersCountInfo"
+          }
+        }
+      }
+    },
+    "SubscribersCountInfo": {
+      "type": "object",
+      "properties": {
+        "productType": {
+          "type": "string"
+        },
+        "subscriberOpen": {
+          "type": "integer"
+        },
+        "subscriberReserved": {
+          "type": "integer"
+        },
+        "subscriberSuspended": {
+          "type": "integer"
+        },
+        "subscriberCancelled": {
+          "type": "integer"
+        },
+        "subscriberFutureActive": {
+          "type": "integer"
+        }
+      }
+    },
+    "Error": {
+      "description": "Error object.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "A specific T-Mobile error code.",
+          "type": "string"
+        },
+        "userMessage": {
+          "description": "A human-readable message describing the error.",
+          "type": "string"
+        },
+        "systemMessage": {
+          "description": "Backend system error message.",
+          "type": "string"
+        }
+      }
+    },
+    "ErrorCollection": {
+      "description": "The array of error objects. As defined in https://tmobileusa.sharepoint.com/teams/EnterpriseServices/ESG%20Standards%20Documents/APIs/T-Mobile%20API%20Design%20Guidelines%20v1.0.docx",
+      "type": "object",
+      "properties": {
+        "errors": {
+          "description": "list of errors.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      }
+    },
+    "SubscribersRequest": {
+      "type": "object",
+      "description": "Describes the request structure for Subscribers.",
+      "properties": {
+        "financialAccountNumber": {
+          "description": "Uniquely describes financial Account Number",
+          "type": "string",
+          "x-example": "123456789",
+          "pattern": "^(\\d{9})$"
+        },
+        "actionType": {
+          "description": "Type of filter",
+          "type": "string",
+          "x-example": "INCLUDE",
+          "enum": [
+            "ALL",
+            "INCLUDE",
+            "EXCLUDE"
+          ]
+        },
+        "subscribersList": {
+          "description": "Comma delimited list of MSISDNs that need to be included in the response",
+          "type": "array",
+          "minItems": 0,
+          "example": [
+            "6106393837",
+            "6106393839",
+            "6106393836"
+          ],
+          "items": {
+            "type": "string",
+            "description": "subscriber identification number"
+          }
+        }
+      },
+      "required": [
+        "financialAccountNumber"
+      ]
+    },
+    "SubscribersResponse": {
+      "type": "object",
+      "description": "Describes response structure of subscribers.",
+      "properties": {
+        "financialAccountNumber": {
+          "description": "Uniquely describes financial Account Number",
+          "type": "string",
+          "x-example": "123456789",
+          "pattern": "^(\\d{9})$"
+        },
+        "totalSubscribersCount": {
+          "description": "Total number of active ,suspended and Reserved subscribers Respective to given Ban.",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0,
+          "maximum": 9999999
+        },
+        "largeFinacialAccount": {
+          "description": "For Ban that exceed the configured threshold response, it will return true else false.",
+          "type": "boolean",
+          "example": true
+        },
+        "filteredSubscribersList": {
+          "description": "Describes response structure of Subscribers.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SubscribersList"
+          }
+        },
+        "failedSubscribersList": {
+          "description": "Describes response structure of Subscribers.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FailedSubscribersList"
+          }
+        }
+      }
+    },
+    "SubscribersList": {
+      "type": "object",
+      "description": "Response will be the combination of success and error response.",
+      "properties": {
+        "mobileNumber": {
+          "description": "subscriber associated with customer",
+          "type": "string",
+          "example": "23456789"
+        },
+        "productType": {
+          "type": "string",
+          "description": "product type of a subscriber.Valid Values:[B, G].",
+          "example": "G"
+        },
+        "status": {
+          "type": "string",
+          "description": "status of a subscriber.Valid Values:[A, S, R].",
+          "example": "A"
+        },
+        "effectiveDate": {
+          "description": "Describes the effective date.",
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-08-05T07:00:00.000Z"
+        }
+      }
+    },
+    "FailedSubscribersList": {
+      "type": "object",
+      "description": "Response will be the combination of success and error response.",
+      "properties": {
+        "mobileNumber": {
+          "description": "subscriber associated with customer",
+          "type": "string",
+          "example": "23456789"
+        },
+        "errors": {
+          "description": "Defines the Subscribers that are other than Active,Suspended and Reserved.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      }
+    }
+  }
+}

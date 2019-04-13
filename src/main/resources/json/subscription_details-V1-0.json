@@ -1,0 +1,782 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This document lists version 1.0 for the APIs that support subscriber.",
+    "version": "1.0",
+    "title": "Subscriber-lines-of-service"
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "subscriber-rest",
+      "description": "Subscriber Rest"
+    }
+  ],
+  "paths": {
+    "/billing/v1/lines-of-service": {
+      "get": {
+        "tags": [
+          "subscriber-rest"
+        ],
+        "description": "Search for mobile-number using financialAccountId ,ULID and charge date. Search for ULID using financialAccountId, mobile-number and charge date.",
+        "operationId": "searchMobileNumbeByULID",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "activityid",
+            "in": "header",
+            "description": "activityid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "applicationuserid",
+            "in": "header",
+            "description": "applicationuserid",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "authorization header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ulid",
+            "in": "query",
+            "description": "ulid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "financialAccountId",
+            "in": "query",
+            "description": "encoded financial Account id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "chargeDate",
+            "in": "query",
+            "description": "chargeDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request was successful",
+            "schema": {
+              "$ref": "#/definitions/MsisdnResponse"
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "schema": {
+              "$ref": "#/definitions/MsisdnResponse"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request",
+            "schema": {
+              "$ref": "#/definitions/MsisdnResponse"
+            }
+          }
+        }
+      }
+    },
+    "/billing/v1/lines-of-service/notification-profile": {
+      "get": {
+        "tags": [
+          "subscriber-rest"
+        ],
+        "description": "Retrieve the Primary Subscriber of the BAN. And the Notification subscriber if it was requested, and if it exists. It will consider only the active subscribers under the BAN.",
+        "operationId": "retrievePrimarySubscriber",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/header-activityid"
+          },
+          {
+            "$ref": "#/parameters/header-authorization"
+          },
+          {
+            "$ref": "#/parameters/header-dealercode"
+          },
+          {
+            "$ref": "#/parameters/header-applicationuserid"
+          },
+          {
+            "$ref": "#/parameters/header-applicationId"
+          },
+          {
+            "$ref": "#/parameters/header-authCustomerId"
+          },
+          {
+            "$ref": "#/parameters/header-authFinancialAccountId"
+          },
+          {
+            "$ref": "#/parameters/header-authLineOfServiceId"
+          },
+          {
+            "$ref": "#/parameters/header-channelId"
+          },
+          {
+            "$ref": "#/parameters/header-interactionId"
+          },
+          {
+            "$ref": "#/parameters/header-masterDealerCode"
+          },
+          {
+            "$ref": "#/parameters/header-segmentationId"
+          },
+          {
+            "$ref": "#/parameters/header-senderId"
+          },
+          {
+            "$ref": "#/parameters/header-sessionId"
+          },
+          {
+            "$ref": "#/parameters/header-storeId"
+          },
+          {
+            "$ref": "#/parameters/header-terminalId"
+          },
+          {
+            "$ref": "#/parameters/header-tillId"
+          },
+          {
+            "$ref": "#/parameters/header-workflowId"
+          },
+          {
+            "$ref": "#/parameters/header-timestamp"
+          },
+          {
+            "name": "financialAccountId",
+            "in": "query",
+            "description": "encoded financial account id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "notificationSubscriberIndicator",
+            "in": "query",
+            "description": "indicates if to retrieve the notification subscriber",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request was successful",
+            "schema": {
+              "$ref": "#/definitions/RetrievePrimarySubscriberResponse"
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorInformation"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorInformation"
+            }
+          }
+        }
+      }
+    },
+	"/billing/v1/lines-of-service/{mobileNumber}/all-subscriber-details":{
+      "get": {
+        "tags": [
+          "subscriber-rest"
+        ],
+        "description": "get subscriber from subscribers_all table",
+        "operationId": "getGenericSubscriber",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/header-activityid"
+          },
+          {
+            "$ref": "#/parameters/header-authorization"
+          },
+          {
+            "$ref": "#/parameters/header-dealercode"
+          },
+          {
+            "$ref": "#/parameters/header-applicationuserid"
+          },
+          {
+            "$ref": "#/parameters/header-applicationId"
+          },
+          {
+            "$ref": "#/parameters/header-authCustomerId"
+          },
+          {
+            "$ref": "#/parameters/header-authFinancialAccountId"
+          },
+          {
+            "$ref": "#/parameters/header-authLineOfServiceId"
+          },
+          {
+            "$ref": "#/parameters/header-channelId"
+          },
+          {
+            "$ref": "#/parameters/header-interactionId"
+          },
+          {
+            "$ref": "#/parameters/header-masterDealerCode"
+          },
+          {
+            "$ref": "#/parameters/header-segmentationId"
+          },
+          {
+            "$ref": "#/parameters/header-senderId"
+          },
+          {
+            "$ref": "#/parameters/header-sessionId"
+          },
+          {
+            "$ref": "#/parameters/header-storeId"
+          },
+          {
+            "$ref": "#/parameters/header-terminalId"
+          },
+          {
+            "$ref": "#/parameters/header-tillId"
+          },
+          {
+            "$ref": "#/parameters/header-workflowId"
+          },
+          {
+            "$ref": "#/parameters/header-timestamp"
+          },
+          {
+            "name": "activityid",
+            "in": "header",
+            "description": "activityid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "applicationuserid",
+            "in": "header",
+            "description": "applicationuserid",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "authorization header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "mobileNumber",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "financialAccountId",
+            "in": "query",
+            "description": "encoded financial Account id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request was successful",
+            "schema": {
+              "$ref": "#/definitions/GenericSubscriberDetails"
+            }
+          },
+          "404": {
+            "description": "Record not found",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorInformation"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorInformation"
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "header-activityid": {
+      "in": "header",
+      "name": "activityid",
+      "description": "activity id",
+      "required": true,
+      "type": "string"
+    },
+    "header-authorization": {
+      "in": "header",
+      "name": "authorization",
+      "description": "authorization header",
+      "required": false,
+      "type": "string"
+    },
+    "header-dealercode": {
+      "in": "header",
+      "name": "dealercode",
+      "description": "dealer code",
+      "required": false,
+      "type": "string"
+    },
+    "header-applicationuserid": {
+      "in": "header",
+      "name": "applicationuserid",
+      "description": "application user id",
+      "required": false,
+      "type": "string"
+    },
+    "header-applicationId": {
+      "in": "header",
+      "name": "applicationId",
+      "description": "application id",
+      "required": false,
+      "type": "string"
+    },
+    "header-authCustomerId": {
+      "in": "header",
+      "name": "authCustomerId",
+      "description": "authCustomer id",
+      "required": false,
+      "type": "string"
+    },
+    "header-authFinancialAccountId": {
+      "in": "header",
+      "name": "authFinancialAccountId",
+      "description": "auth financial account id",
+      "required": false,
+      "type": "string"
+    },
+    "header-authLineOfServiceId": {
+      "in": "header",
+      "name": "authLineOfServiceId",
+      "description": "auth line of service id",
+      "required": false,
+      "type": "string"
+    },
+    "header-channelId": {
+      "in": "header",
+      "name": "channelId",
+      "description": "channel id",
+      "required": false,
+      "type": "string"
+    },
+    "header-interactionId": {
+      "in": "header",
+      "name": "interactionId",
+      "description": "interaction id",
+      "required": false,
+      "type": "string"
+    },
+    "header-masterDealerCode": {
+      "in": "header",
+      "name": "masterDealerCode",
+      "description": "master dealer code",
+      "required": false,
+      "type": "string"
+    },
+    "header-segmentationId": {
+      "in": "header",
+      "name": "segmentationId",
+      "description": "segmentation id",
+      "required": false,
+      "type": "string"
+    },
+    "header-senderId": {
+      "in": "header",
+      "name": "senderId",
+      "description": "sender id",
+      "required": false,
+      "type": "string"
+    },
+    "header-sessionId": {
+      "in": "header",
+      "name": "sessionId",
+      "description": "session id",
+      "required": false,
+      "type": "string"
+    },
+    "header-terminalId": {
+      "in": "header",
+      "name": "terminalId",
+      "description": "terminal id",
+      "required": false,
+      "type": "string"
+    },
+    "header-storeId": {
+      "in": "header",
+      "name": "storeId",
+      "description": "store id",
+      "required": false,
+      "type": "string"
+    },
+    "header-tillId": {
+      "in": "header",
+      "name": "tillId",
+      "description": "till id",
+      "required": false,
+      "type": "string"
+    },
+    "header-workflowId": {
+      "in": "header",
+      "name": "workflowId",
+      "description": "workflow id",
+      "required": false,
+      "type": "string"
+    },
+    "header-timestamp": {
+      "in": "header",
+      "name": "timestamp",
+      "description": "timestamp",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "definitions": {
+    "MsisdnResponse": {
+      "type": "object",
+      "properties": {
+        "msisdn": {
+          "type": "string"
+        }
+      }
+    },
+    "GenericSubscriberDetails": {
+      "type": "object",
+      "properties": {
+        "productType": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "RetrievePrimarySubscriberResponse": {
+      "type": "object",
+      "properties": {
+        "subscriberMobileNumberList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SubscriberMobileNumberRecord"
+          }
+        }
+      }
+    },
+    "SubscriberMobileNumberRecord": {
+      "type": "object",
+      "properties": {
+        "mobileNumber": {
+          "type": "string"
+        },
+        "lineType": {
+          "type": "string"
+        }
+      }
+    },
+    "StatusActivityCode": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "reasonCode": {
+          "type": "string"
+        },
+        "reasonName": {
+          "type": "string"
+        }
+      }
+    },
+    "StoreInfo": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "SubscriberProductType": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "RequestByBillingAccountAndMSISDN": {
+      "type": "object",
+      "properties": {
+        "billingAccountId": {
+          "type": "string"
+        },
+        "msisdn": {
+          "type": "string"
+        }
+      }
+    },
+    "Subscriber": {
+      "type": "object",
+      "properties": {
+        "_links": {
+          "type": "array",
+          "items": {
+            "$ref": "./definitions.json#/definitions/IdRef"
+          }
+        },
+        "activatingDealer": {
+          "$ref": "#/definitions/DealerProfile"
+        },
+        "activatingStoreInfo": {
+          "$ref": "#/definitions/StoreInfo"
+        },
+        "activationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "billingAccountId": {
+          "type": "string"
+        },
+        "contact": {
+          "$ref": "#/definitions/ContactInfo"
+        },
+        "lastActivityCode": {
+          "$ref": "#/definitions/StatusActivityCode"
+        },
+        "marketType": {
+          "$ref": "#/definitions/MarketType"
+        },
+        "msisdn": {
+          "type": "string"
+        },
+        "paperworkDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "productType": {
+          "$ref": "#/definitions/SubscriberProductType"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "./definitions.json#/definitions/ProductRef"
+          }
+        },
+        "resource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Resource"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/SubscriberStatus"
+        },
+        "statusDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "uuid": {
+          "type": "string"
+        }
+      }
+    },
+    "ContactInfo": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "middleInitial": {
+          "type": "string"
+        },
+        "nameId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "suffix": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "SubscriberStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "MarketType": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "DealerProfile": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "salesChannel": {
+          "type": "string"
+        }
+      }
+    },
+    "Resource": {
+      "type": "object",
+      "properties": {
+        "endDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "type": {
+          "$ref": "#/definitions/ResourceType"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ResourceType": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "ClientErrorInformation": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "userMessage": {
+          "type": "string"
+        },
+        "systemMessage": {
+          "type": "string"
+        },
+        "requestURI": {
+          "type": "string"
+        },
+        "traceId": {
+          "type": "string"
+        }
+      }
+    },
+    "SubscribersCountInfo": {
+      "type": "object",
+      "properties": {
+        "productType": {
+          "type": "string"
+        },
+        "subscriberOpen": {
+          "type": "integer"
+        },
+        "subscriberReserved": {
+          "type": "integer"
+        },
+        "subscriberSuspended": {
+          "type": "integer"
+        },
+        "subscriberCancelled": {
+          "type": "integer"
+        },
+        "subscriberFutureActive": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This document describes Promotion APIs that retrieve information about a subscriber and its ban (services - SOCs/Rate Plans, activation date etc)",
+    "version": "1.0",
+    "title": "Promotions - Ban and Subscriber Level Attributes"
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "subscriber",
+      "description": "A party that subscribes for a product"
+    }
+  ],
+  "paths": {
+    "/billing-experience/v1/subscriber-fan-services": {
+      "get": {
+        "tags": [
+          "subscriber"
+        ],
+        "summary": "Get profile for a specified Subscriber",
+        "description": "This API retrives information about a subscriber and its ban (services - SOCs/Rate Plans, activation date etc)",
+        "operationId": "retrieveProfileBySubscriber",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/header-activityid"
+          },
+          {
+            "$ref": "#/parameters/header-authorization"
+          },
+          {
+            "$ref": "#/parameters/header-dealercode"
+          },
+          {
+            "$ref": "#/parameters/header-applicationuserid"
+          },
+          {
+            "$ref": "#/parameters/header-application-id"
+          },
+          {
+            "$ref": "#/parameters/header-channel-id"
+          },
+          {
+            "$ref": "#/parameters/header-operator-id"
+          },
+          {
+            "$ref": "#/parameters/header-service-partner-id"
+          },
+          {
+            "$ref": "#/parameters/query-msisdn"
+          },
+          {
+            "$ref": "#/parameters/query-financial-account-id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SubscriberProfileResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Service unavailable exception",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "header-activityid": {
+      "in": "header",
+      "name": "activityid",
+      "description": "activity id",
+      "required": true,
+      "type": "string"
+    },
+    "header-authorization": {
+      "in": "header",
+      "name": "authorization",
+      "description": "authorization header",
+      "required": false,
+      "type": "string"
+    },
+    "header-dealercode": {
+      "in": "header",
+      "name": "dealercode",
+      "description": "dealer code",
+      "required": false,
+      "type": "string"
+    },
+    "header-applicationuserid": {
+      "in": "header",
+      "name": "applicationuserid",
+      "description": "application user id",
+      "required": false,
+      "type": "string"
+    },
+    "header-application-id": {
+      "in": "header",
+      "name": "applicationid",
+      "description": "application id",
+      "required": false,
+      "type": "string"
+    },
+    "header-channel-id": {
+      "in": "header",
+      "name": "channelid",
+      "description": "channel id",
+      "required": false,
+      "type": "string"
+    },
+    "header-operator-id": {
+      "in": "header",
+      "name": "operatorid",
+      "description": "operator id",
+      "required": false,
+      "type": "integer",
+      "format": "int32"
+    },
+    "header-service-partner-id": {
+      "in": "header",
+      "name": "servicepartnerid",
+      "description": "service partner id",
+      "required": false,
+      "type": "string"
+    },
+    "query-msisdn": {
+      "in": "query",
+      "name": "msisdn",
+      "description": "subscriber number needs to be sent as Base64 and Url encoded",
+      "required": true,
+      "type": "string"
+    },
+    "query-financial-account-id": {
+      "in": "query",
+      "name": "financialAccountId",
+      "description": "financial account id needs to be sent as Base64 and Url encoded",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "definitions": {
+    "SubscriberProfileResponse": {
+      "type": "object",
+      "properties": {
+        "financialAccount": {
+          "$ref": "#/definitions/FinancialAccountProfile"
+        },
+        "subscriber": {
+          "$ref": "#/definitions/SubscriberProfile"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "userMessage": {
+          "type": "string"
+        },
+        "systemMessage": {
+          "type": "string"
+        },
+        "requestURI": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountTypeRef": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        }
+      }
+    },
+    "ServicesRef": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "socDescription": {
+          "type": "string"
+        },
+        "socEffectiveDate": {
+          "type": "string"
+        },
+        "socExpirationDate": {
+          "type": "string"
+        }
+      }
+    },
+    "FinancialAccountProfile": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "account": {
+          "$ref": "#/definitions/AccountTypeRef"
+        },
+        "notificationMsisdn": {
+          "type": "string"
+        },
+        "totalActiveSuspendedLines": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "SubscriberProfile": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServicesRef"
+          }
+        },
+        "activationDate": {
+          "type": "string"
+        },
+        "paperWorkDate": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

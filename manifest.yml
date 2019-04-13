@@ -1,0 +1,20 @@
+---
+applications:
+- name: bankPerkEligibility
+  host: bankPerkEligibility
+  domain: apps.px-npe01b.cf.t-mobile.com
+  memory: 1G
+  instances: 1
+  path: ./target/eligibility-0.0.1-SNAPSHOT.jar
+  buildpack: java_buildpack_offline
+  timeout: 180
+  env:
+    spring.application.name: bankPerkEligibility
+    spring.profiles.active: cloud
+    TRUST_CERTS: apps.sys.px-npe01b.cf.t-mobile.com
+    TZ: PST
+    APP_NAME: bankPerkEligibility
+    DC: POL
+    SPACE_NAME: QLAB02 
+
+
